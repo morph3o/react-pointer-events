@@ -18,6 +18,9 @@ class DragBox extends React.Component {
     this.isDragging = true;
     event.target.setPointerCapture(event.pointerId);
 
+    // Mostrando en tipo de pointer
+    this.setState({ pointerDevice: event.pointerType });
+
     // We store the initial coordinates to be able to calculate the changes
     // later on.
     this.extractPositionDelta(event);
@@ -27,7 +30,6 @@ class DragBox extends React.Component {
     if (!this.isDragging) {
       return;
     }
-    this.setState({ pointerDevice: event.pointerType });
     const { left, top } = this.extractPositionDelta(event);
 
     this.setState(({ circleLeft, circleTop }) => ({
